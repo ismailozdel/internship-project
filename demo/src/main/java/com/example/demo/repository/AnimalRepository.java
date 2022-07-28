@@ -6,6 +6,5 @@ import com.example.demo.model.Animal;
 
 
 public interface AnimalRepository extends JpaRepository<Animal, Integer> {
-    Animal getById(int id);
 
 }

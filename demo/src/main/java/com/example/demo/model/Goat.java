@@ -10,6 +10,13 @@ public class Goat extends Animal{
 	@Column(name="id")
 	private int id;
 
+	@Column(name="animalType")
+	private String animalType = "goat";
+
+	public String getAnimalType() {
+		return animalType;
+	}
+
 	public int getId() {
 		return id;
 	}

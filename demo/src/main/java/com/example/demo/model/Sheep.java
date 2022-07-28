@@ -9,8 +9,15 @@ public class Sheep extends Animal{
     @Column(name="id")
     private int id;
 
+    @Column(name="animalType")
+	private String animalType = "sheep";
+
     public int getId() {
         return id;
+    }
+
+    public String getAnimalType() {
+        return animalType;
     }
 
 

@@ -12,32 +12,36 @@ import com.example.demo.model.Goat;
 import com.example.demo.model.Sheep;
 import com.example.demo.model.Animal;
 import com.example.demo.repository.AnimalRepository;
-import com.example.demo.repository.ChickenRepository;
+/* import com.example.demo.repository.ChickenRepository;
 import com.example.demo.repository.GoatRepository;
-import com.example.demo.repository.SheepRepository;
+import com.example.demo.repository.SheepRepository; */
 import com.example.demo.service.AnimalService;
 import com.example.demo.utilies.results.DataResult;
+import com.example.demo.utilies.results.ErrorDataResult;
+import com.example.demo.utilies.results.ErrorResult;
+import com.example.demo.utilies.results.Result;
 import com.example.demo.utilies.results.SuccessDataResult;
+import com.example.demo.utilies.results.SuccessResult;
 @Service
 public class AnimalServiceImpl implements AnimalService{
 
     private AnimalRepository animalRepository;
-    private ChickenRepository chickenRepository;
+/*     private ChickenRepository chickenRepository;
     private GoatRepository goatRepository;
-    private SheepRepository sheepRepository;
+    private SheepRepository sheepRepository; */
     @Autowired
-    private AnimalServiceImpl(AnimalRepository animalRepository,ChickenRepository chickenRepository,GoatRepository goatRepository,SheepRepository sheepRepository){
+    private AnimalServiceImpl(AnimalRepository animalRepository/* ,ChickenRepository chickenRepository,GoatRepository goatRepository,SheepRepository sheepRepository */){
         super();
         this.animalRepository = animalRepository;
-        this.chickenRepository = chickenRepository;
+/*         this.chickenRepository = chickenRepository;
         this.goatRepository = goatRepository;
-        this.sheepRepository = sheepRepository;
+        this.sheepRepository = sheepRepository; */
     }
 
     @Override
     public DataResult<List<Animal>> getAllAnimals() {
         
-        List returnValue = new ArrayList();
+        /* List returnValue = new ArrayList();
         
         
         List<Chicken> chickens = chickenRepository.findAll();
@@ -59,7 +63,98 @@ public class AnimalServiceImpl implements AnimalService{
         sheepMap.put("Sheep Count", sheeps.size());
         returnValue.addAll(sheeps);
         returnValue.add(sheepMap);
-        return new SuccessDataResult<List<Animal>>(returnValue) ;
+        return new SuccessDataResult<List<Animal>>(returnValue) ; */
+        return new ErrorDataResult<>("s");
     }
+
+    @Override
+    public DataResult<Animal> getAnimal(int id) {
+        return new SuccessDataResult<Animal>(animalRepository.findById(id).get());
+    }
+
+    @Override
+    public Result addAnimal(Animal animal) {
+        animalRepository.save(animal);
+        return new SuccessResult("cond");
+    }
+
+    @Override
+    public Result addAnimal(Chicken animal) {
+        animalRepository.save(animal);
+        return new SuccessResult("cond");
+    }
+
+    @Override
+    public Result addAnimal(Goat animal) {
+        animalRepository.save(animal);
+        return new SuccessResult("cond");
+    }
+
+    @Override
+    public Result addAnimal(Sheep animal) {
+        animalRepository.save(animal);
+        return new SuccessResult("cond");
+    }
+
+    @Override
+    public Result updateAnimal(Animal animal) {
+        try {
+            if(animalRepository.getById(animal.getId()) != null){
+                animalRepository.save(animal);
+            }
+            return new SuccessResult("Successfull");
+        } catch (Exception e) {
+            return new ErrorResult("404");
+        }
+    }
+
+    @Override
+    public Result updateAnimal(Chicken animal) {
+        try {
+            if(animalRepository.getById(animal.getId()) != null){
+                animalRepository.save(animal);
+            }
+            return new SuccessResult("Successfull");
+        } catch (Exception e) {
+            return new ErrorResult("404");
+        }
+    }
+
+    @Override
+    public Result updateAnimal(Goat animal) {
+        try {
+            if(animalRepository.getById(animal.getId()) != null){
+                animalRepository.save(animal);
+            }
+            return new SuccessResult("Successfull");
+        } catch (Exception e) {
+            return new ErrorResult("404");
+        }
+    }
+
+    @Override
+    public Result updateAnimal(Sheep animal) {
+        try {
+            if(animalRepository.getById(animal.getId()) != null){
+                animalRepository.save(animal);
+            }
+            return new SuccessResult("Successfull");
+        } catch (Exception e) {
+            return new ErrorResult("404");
+        }
+    }
+
+    @Override
+    public Result deleteAnimal(int id) {
+        try {
+            animalRepository.deleteById(id);
+            return new SuccessResult("Successfull");
+        } catch (Exception e) {
+            return new ErrorResult("404");
+        }
+    }
+
+
+    
     
 }

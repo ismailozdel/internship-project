@@ -13,6 +13,9 @@ public class Chicken extends Animal{
 	@Column(name="daily_egg_production")
 	private int dailyEggProduction;
 
+	@Column(name="animalType")
+	private String animalType = "chicken";
+
 	public int getId() {
 		return id;
 	}
@@ -25,5 +28,11 @@ public class Chicken extends Animal{
 		this.dailyEggProduction = dailyEggProduction;
 	}
 
+	public String getAnimalType() {
+		return animalType;
+	}
+
+
+	
 
 }
