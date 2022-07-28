@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Animal;
-import com.example.demo.model.Chicken;
-import com.example.demo.model.Goat;
-import com.example.demo.model.Sheep;
+import com.example.demo.model.AnimalAttiributes;
+import com.example.demo.model.AnimalType;
+import com.example.demo.model.param;
 import com.example.demo.service.AnimalService;
 import com.example.demo.utilies.results.DataResult;
 import com.example.demo.utilies.results.Result;
@@ -39,39 +39,21 @@ public class AnimalController {
     public DataResult<Animal> getAnimal(@RequestParam int id){
         return this.animalService.getAnimal(id);
     }
+    @GetMapping("/get/animalType")
+    public DataResult<List<AnimalType>> getAnimalTypes(){
+        return this.animalService.getAnimalTypes();
+    }
 
     @PostMapping("/add")
-    public Result addAnimal(@RequestBody Animal animal){
-        return this.animalService.addAnimal(animal);
-    }
-    @PostMapping("/add/chicken")
-    public Result addAnimal(@RequestBody Chicken animal){
-        return this.animalService.addAnimal(animal);
-    }
-    @PostMapping("/add/goat")
-    public Result addAnimal(@RequestBody Goat animal){
-        return this.animalService.addAnimal(animal);
-    }
-    @PostMapping("/add/sheep")
-    public Result addAnimal(@RequestBody Sheep animal){
-        return this.animalService.addAnimal(animal);
+    public Result addAnimal(@RequestBody param param){
+        Animal animal = param.getAnimal();
+        AnimalAttiributes animalAttiributes = param.getAnimalAttiributes();
+        return this.animalService.addAnimal(animal,animalAttiributes);
     }
 
 
     @PutMapping("/update")
     public Result update(@RequestBody Animal animal){
-        return animalService.updateAnimal(animal);
-    }
-    @PutMapping("/update/chicken")
-    public Result update(@RequestBody Chicken animal){
-        return animalService.updateAnimal(animal);
-    }
-    @PutMapping("/update/goat")
-    public Result update(@RequestBody Goat animal){
-        return animalService.updateAnimal(animal);
-    }
-    @PutMapping("/update/sheep")
-    public Result update(@RequestBody Sheep animal){
         return animalService.updateAnimal(animal);
     }
 

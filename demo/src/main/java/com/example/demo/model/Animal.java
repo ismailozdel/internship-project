@@ -18,11 +18,32 @@ public class Animal {
 	@Column(name="age")
 	private int age;
 
+	@ManyToOne
+	private AnimalType animalType;
+
+	@ManyToOne
+	private AnimalAttiributes animalAttiributes;
+
 	
+	public AnimalAttiributes getAnimalAttiributes() {
+		return animalAttiributes;
+	}
+
+	public void setAnimalAttiributes(AnimalAttiributes animalAttiributes) {
+		this.animalAttiributes = animalAttiributes;
+	}
+
+	public AnimalType getAnimalType() {
+		return animalType;
+	}
+
+	public void setAnimalType(AnimalType animalType) {
+		this.animalType = animalType;
+	}
+
 	public int getId() {
 		return id;
 	}
-
 
 	public String getName() {
 		return name;
@@ -38,5 +59,17 @@ public class Animal {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Animal(int id, String name, int age, AnimalType animalType,AnimalAttiributes animalAttiributes) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.animalType = animalType;
+		this.animalAttiributes = animalAttiributes;
+	}
+	public Animal(){
+		super();
 	}
 }
